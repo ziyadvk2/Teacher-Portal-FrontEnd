@@ -32,6 +32,7 @@ const fetchUser = async (accessToken) => {
 const postUserData = async (userData) => {
   try {
     let userResponse = await axios.post("/api/register", userData);
+    console.log("userData",userData);
     if (userResponse?.status === 201) {
       return {
         status: true,

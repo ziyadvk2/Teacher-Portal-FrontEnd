@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useEffect, useState } from "react";
 import Sheet from "@mui/joy/Sheet";
 import CssBaseline from "@mui/joy/CssBaseline";
 import Typography from "@mui/joy/Typography";
@@ -20,7 +20,7 @@ export default function LoginFinal() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { loginError } = useSelector((state) => state.userReducer);
+  const { loginError, status } = useSelector((state) => state.userReducer);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -28,9 +28,16 @@ export default function LoginFinal() {
   };
 
   const handleSubmit = async (event) => {
-    dispatch(loginUser(formData));
-    navigate("/home");
+    event.preventDefault();
+    dispatch(loginUser(formData));  
   };
+
+  useEffect(() => {
+    if (status === 'succeededLogin') {
+      alert('Login Successful');
+      navigate("/home");
+    }
+  }, [status, navigate]);
 
   return (
     <main>

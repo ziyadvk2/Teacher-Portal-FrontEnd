@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useEffect, useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -14,6 +14,7 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useDispatch, useSelector } from "react-redux";
 import {postUserData} from "../Redux/reducers/userReducer";
+import { useNavigate } from "react-router";
 
 function Copyright(props) {
   return (
@@ -42,10 +43,12 @@ export default function SignUpPage() {
     lastName: "",
     email: "",
     password: "",
+    verifyPassword:""
   });
-  const { firstName, lastName, email, password } = formData;
+  const { firstName, lastName, email, password ,verifyPassword} = formData;
   const dispatch = useDispatch();
-  const {  registerError } = useSelector((state) => state.userReducer);
+  const navigate = useNavigate()
+  const {  registerError,status } = useSelector((state) => state.userReducer);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -56,6 +59,13 @@ export default function SignUpPage() {
     event.preventDefault();
     dispatch(postUserData(formData));
   };
+
+  useEffect(() => {
+    if (status === 'succeededRegistration') {
+      alert('Registration Completed. Please Sign in');
+      navigate('/login');
+    }
+  }, [status, navigate]);
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -127,8 +137,19 @@ export default function SignUpPage() {
                   label="Password"
                   type="password"
                   id="password"
-                  autoComplete="new-password"
                   value={password}
+                  onChange={handleChange}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="verifyPassword"
+                  label="verifyPassword"
+                  type="password"
+                  id="verifyPassword"
+                  value={verifyPassword}
                   onChange={handleChange}
                 />
               </Grid>

@@ -77,6 +77,7 @@ export default function EditStudent({ studentId, initialData }) {
               label="Name"
               variant="outlined"
               name="name"
+              type="text"
               value={name}
               onChange={handleChange}
               placeholder="Enter Student Name"

@@ -65,6 +65,11 @@ export default function NewStudent() {
             }}
           >
             <TextField
+              inputProps={{
+                style: {
+                  padding: 5,
+                },
+              }}
               sx={{ mt: 1 }}
               id="outlined-basic"
               label="Name"
@@ -75,6 +80,11 @@ export default function NewStudent() {
               placeholder="Enter Student Name"
             />
             <TextField
+              inputProps={{
+                style: {
+                  padding: 5,
+                },
+              }}
               sx={{ mt: 1 }}
               id="outlined-basic"
               label="Subject Name"
@@ -86,6 +96,11 @@ export default function NewStudent() {
               placeholder="Enter Subject Name"
             />
             <TextField
+              inputProps={{
+                style: {
+                  padding: 5,
+                },
+              }}
               sx={{ mt: 1 }}
               id="outlined-basic"
               label="Mark"

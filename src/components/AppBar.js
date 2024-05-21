@@ -26,7 +26,7 @@ function ResponsiveAppBar() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { user, loading } = useSelector((state) => state.userReducer);
+  const { user,accessToken, loading } = useSelector((state) => state.userReducer);
   useEffect(() => {
     dispatch(fetchUser());
   }, [dispatch]);
@@ -83,7 +83,7 @@ function ResponsiveAppBar() {
               Teacher's Portal
             </Typography>
           </Box>
-          {user && !loading ? (
+          {user && accessToken ? (
             <Box>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>

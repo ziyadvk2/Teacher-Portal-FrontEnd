@@ -18,9 +18,8 @@ export default function LoginFinal() {
   });
   const { email, password } = formData;
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
-  const { loginError, status } = useSelector((state) => state.userReducer);
+  const { loginError } = useSelector((state) => state.userReducer);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -29,15 +28,9 @@ export default function LoginFinal() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    dispatch(loginUser(formData));  
+    dispatch(loginUser(formData));
+    
   };
-
-  useEffect(() => {
-    if (status === 'succeededLogin') {
-      alert('Login Successful');
-      navigate("/home");
-    }
-  }, [status, navigate]);
 
   return (
     <main>

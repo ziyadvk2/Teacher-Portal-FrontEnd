@@ -13,7 +13,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useDispatch, useSelector } from "react-redux";
-import {postUserData} from "../Redux/reducers/userReducer";
+import { postUserData } from "../Redux/reducers/userReducer";
 import { useNavigate } from "react-router";
 
 function Copyright(props) {
@@ -34,7 +34,6 @@ function Copyright(props) {
   );
 }
 
-
 const defaultTheme = createTheme();
 
 export default function SignUpPage() {
@@ -43,12 +42,12 @@ export default function SignUpPage() {
     lastName: "",
     email: "",
     password: "",
-    verifyPassword:""
+    verifyPassword: "",
   });
-  const { firstName, lastName, email, password ,verifyPassword} = formData;
+  const { firstName, lastName, email, password, verifyPassword } = formData;
   const dispatch = useDispatch();
-  const navigate = useNavigate()
-  const {  registerError,status } = useSelector((state) => state.userReducer);
+  const navigate = useNavigate();
+  const { registerError, status } = useSelector((state) => state.userReducer);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -61,9 +60,9 @@ export default function SignUpPage() {
   };
 
   useEffect(() => {
-    if (status === 'succeededRegistration') {
-      alert('Registration Completed. Please Sign in');
-      navigate('/login');
+    if (status === "succeededRegistration") {
+      alert("Registration Completed. Please Sign in");
+      navigate("/login");
     }
   }, [status, navigate]);
 
@@ -94,7 +93,11 @@ export default function SignUpPage() {
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
-                  autoComplete="given-name"
+                  inputProps={{
+                    style: {
+                      padding: 5,
+                    },
+                  }}
                   name="firstName"
                   required
                   fullWidth
@@ -107,30 +110,43 @@ export default function SignUpPage() {
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
+                  inputProps={{
+                    style: {
+                      padding: 5,
+                    },
+                  }}
                   required
                   fullWidth
                   id="lastName"
                   label="Last Name"
                   name="lastName"
-                  autoComplete="family-name"
                   value={lastName}
                   onChange={handleChange}
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
+                  inputProps={{
+                    style: {
+                      padding: 5,
+                    },
+                  }}
                   required
                   fullWidth
                   id="email"
                   label="Email Address"
                   name="email"
-                  autoComplete="email"
                   value={email}
                   onChange={handleChange}
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
+                  inputProps={{
+                    style: {
+                      padding: 5,
+                    },
+                  }}
                   required
                   fullWidth
                   name="password"
@@ -143,6 +159,11 @@ export default function SignUpPage() {
               </Grid>
               <Grid item xs={12}>
                 <TextField
+                  inputProps={{
+                    style: {
+                      padding: 5,
+                    },
+                  }}
                   required
                   fullWidth
                   name="verifyPassword"

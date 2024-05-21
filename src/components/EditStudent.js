@@ -6,12 +6,10 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import {  TextField } from "@mui/material";
+import { TextField } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import { useDispatch } from "react-redux";
-import {
-  updateStudentById,
-} from "../Redux/reducers/studentReducer";
+import { updateStudentById } from "../Redux/reducers/studentReducer";
 
 export default function EditStudent({ studentId, initialData }) {
   const [open, setOpen] = useState(false);
@@ -26,9 +24,9 @@ export default function EditStudent({ studentId, initialData }) {
   const handleBox = () => {
     setOpen(!open);
   };
-useEffect(()=>{
-  setFormData(initialData);
-},[initialData])
+  useEffect(() => {
+    setFormData(initialData);
+  }, [initialData]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -63,47 +61,65 @@ useEffect(()=>{
               m: "auto",
               width: "fit-content",
               mt: 2,
-               minWidth: 120, 
-               maxWidth: "100%",
-              '& > :not(style)': { m: 1, width: '25ch' },
+              minWidth: 120,
+              maxWidth: "100%",
+              "& > :not(style)": { m: 1, width: "25ch" },
             }}
           >
-              <TextField
-                id="outlined-basic"
-                label="Name"
-                variant="outlined"
-                name="name"
-                value={name}
-                onChange={handleChange}
-                placeholder="Enter Student Name"
-              />
-              <TextField
-                id="outlined-basic"
-                label="Subject Name"
-                variant="outlined"
-                type="text"
-                name="subjectName"
-                value={subjectName}
-                onChange={handleChange}
-                placeholder="Enter Subject Name"
-              />
-              <TextField
-                id="outlined-basic"
-                label="Mark"
-                variant="outlined"
-                type="number"
-                name="mark"
-                value={mark}
-                onChange={handleChange}
-                placeholder="Enter Mark"
-              />
-              <Button
-                type="submit"
-                sx={{ mt: 1, backgroundColor: "black", color: "white" }}
-                onClick={handleSubmit}
-              >
-                Edit Student
-              </Button>
+            <TextField
+              inputProps={{
+                style: {
+                  padding: 5,
+                },
+              }}
+              sx={{ mt: 1 }}
+              id="outlined-basic"
+              label="Name"
+              variant="outlined"
+              name="name"
+              value={name}
+              onChange={handleChange}
+              placeholder="Enter Student Name"
+            />
+            <TextField
+              inputProps={{
+                style: {
+                  padding: 5,
+                },
+              }}
+              sx={{ mt: 1 }}
+              id="outlined-basic"
+              label="Subject Name"
+              variant="outlined"
+              type="text"
+              name="subjectName"
+              value={subjectName}
+              onChange={handleChange}
+              placeholder="Enter Subject Name"
+            />
+            <TextField
+              inputProps={{
+                style: {
+                  padding: 5,
+                },
+              }}
+              sx={{ mt: 1 }}
+              id="outlined-basic"
+              label="Mark"
+              variant="outlined"
+              type="number"
+              name="mark"
+              value={mark}
+              onChange={handleChange}
+              placeholder="Enter Mark"
+            />
+            <Button
+              type="submit"
+              sx={{ mt: 1, backgroundColor: "black", color: "white" }}
+              onClick={handleSubmit}
+            >
+              Edit Student
+            </Button>
           </Box>
         </DialogContent>
         <DialogActions>

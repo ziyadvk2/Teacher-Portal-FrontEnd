@@ -13,7 +13,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import { Button, Link } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUser, logout } from "../Redux/reducers/userReducer";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 
 const settings = [
   { name: "Profile", path: "/profile" },
@@ -25,15 +25,18 @@ function ResponsiveAppBar() {
   const [anchorElUser, setAnchorElUser] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const currentPath = useLocation().pathname;
 
-  const { user,accessToken, loading } = useSelector((state) => state.userReducer);
+  const { user, accessToken, loading } = useSelector(
+    (state) => state.userReducer
+  );
   useEffect(() => {
     dispatch(fetchUser());
   }, [dispatch]);
 
   const handleLogout = () => {
-    dispatch(logout()); 
-    navigate("/login");
+    dispatch(logout());
+    navigate("/landing");
   };
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
@@ -79,6 +82,7 @@ function ResponsiveAppBar() {
                 textDecoration: "none",
                 fontSize: "xx-large",
               }}
+              onClick={()=>navigate("/home")}
             >
               Teacher's Portal
             </Typography>
@@ -126,6 +130,20 @@ function ResponsiveAppBar() {
                 ))}
               </Menu>
             </Box>
+          ) : currentPath === "/login" ? (
+            <Button
+              onClick={() => navigate("/signup")}
+              sx={{ mt: 1, color: "white" }}
+            >
+              Sign Up
+            </Button>
+          ) : currentPath === "/signup" ? (
+            <Button
+              onClick={() => navigate("/login")}
+              sx={{ mt: 1, color: "white" }}
+            >
+              Log In
+            </Button>
           ) : loading ? (
             <Box>
               {" "}

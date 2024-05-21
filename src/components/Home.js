@@ -7,14 +7,10 @@ import { useSelector } from "react-redux";
 const Home = () => {
   const { status } = useSelector((state) => state.userReducer);
 
-  useEffect(()=>{
-    if (status === 'succeededLogin') {
-      alert('Login Successful');
-    }
-  },[]);
 
   return (
     <>
+    {status === 'succeededLogin' && <h5 style={{marginTop:2,marginBottom:2,color:"#46B980"}}>SuccessFully Logged In</h5>}
       <StudentTable />
       <Box sx={{ textAlign: "center", mt: 5 }}>
         <NewStudent />

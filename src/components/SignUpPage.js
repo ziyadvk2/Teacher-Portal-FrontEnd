@@ -26,7 +26,7 @@ function Copyright(props) {
     >
       {"Copyright © "}
       <Link color="inherit" href="#">
-        Your Website
+        Teacher's-Portal
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -46,8 +46,9 @@ export default function SignUpPage() {
   });
   const { firstName, lastName, email, password, verifyPassword } = formData;
   const dispatch = useDispatch();
+  const { registerError} = useSelector((state) => state.userReducer);
+  const { status } = useSelector((state) => state.userReducer);
   const navigate = useNavigate();
-  const { registerError, status } = useSelector((state) => state.userReducer);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -61,18 +62,16 @@ export default function SignUpPage() {
 
   useEffect(() => {
     if (status === "succeededRegistration") {
-      alert("Registration Completed. Please Sign in");
-      navigate("/login");
+      navigate("/landing");
     }
   }, [status, navigate]);
-
   return (
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
+            marginTop: 2,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",

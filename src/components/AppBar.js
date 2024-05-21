@@ -36,7 +36,7 @@ function ResponsiveAppBar() {
 
   const handleLogout = () => {
     dispatch(logout());
-    navigate("/landing");
+    navigate("/");
   };
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);

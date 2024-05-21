@@ -62,7 +62,7 @@ export default function SignUpPage() {
 
   useEffect(() => {
     if (status === "succeededRegistration") {
-      navigate("/landing");
+      navigate("/");
     }
   }, [status, navigate]);
   return (
